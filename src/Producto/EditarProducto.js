@@ -4,11 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
-const URI = 'http://localhost:8000/Productos/';
-const URI2 = 'http://localhost:8000/Companias/';
-const URI3 = 'http://localhost:8000/Proveedores/';
+const URI = `${API}/Productos/`;
+const URI2 = `${API}/Companias/`;
+const URI3 = `${API}/Proveedores/`;
 
 
 const EditarProducto = () => {

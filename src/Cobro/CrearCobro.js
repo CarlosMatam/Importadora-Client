@@ -3,10 +3,11 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
 
-const URI = 'http://localhost:8000/Cobros/'
+const URI = `${API}/Cobros/`
 //RECORDAR HACER LA const URI2 cuando exista cliente
 
 const CrearCobro = () => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
 const CrearFactura = () => {
@@ -37,7 +38,7 @@ const CrearFactura = () => {
 
     const obtenerCompanias = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/Companias');
+            const response = await axios.get(`${API}/Companias`);
             const data = response.data;
             setCompanias(data);
         } catch (error) {
@@ -47,7 +48,7 @@ const CrearFactura = () => {
 
     const obtenerTiposFactura = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/TiposFactura');
+            const response = await axios.get(`${API}/TiposFactura`);
             const data = response.data;
             setTiposFactura(data);
         } catch (error) {
@@ -57,7 +58,7 @@ const CrearFactura = () => {
 
     const obtenerClientes = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/Clientes');
+            const response = await axios.get(`${API}/Clientes`);
             const data = response.data;
             setClientes(data);
         } catch (error) {
@@ -124,7 +125,7 @@ const CrearFactura = () => {
 
         if (value !== '') {
             try {
-                const response = await axios.get(`http://localhost:8000/Productos/buscar/${value}`);
+                const response = await axios.get(`${API}/Productos/buscar/${value}`);
                 const productoData = response.data;
 
                 if (productoData) {
@@ -206,7 +207,7 @@ const CrearFactura = () => {
                     })),
                 };
                 console.log(facturaData);
-                await axios.post('http://localhost:8000/Facturacion/', facturaData);
+                await axios.post(`${API}/Facturacion/`, facturaData);
 
                 // Limpiar el estado de la factura
                 setDetalleVenta([]);
@@ -230,7 +231,7 @@ const CrearFactura = () => {
 
     const obtenerUltimoIDFactura = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/Facturacion/ultimoID');
+            const response = await axios.get(`${API}/Facturacion/ultimoID`);
             const { ultimoID } = response.data;
 
             if (!isNaN(ultimoID)) {

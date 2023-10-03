@@ -5,13 +5,15 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
-const URI = 'http://localhost:8000/Clientes/';
-const URI2 = 'http://localhost:8000/TipoCedula/';
-const URI3 = 'http://localhost:8000/DireccionesCliente/';
-const URI4 = 'http://localhost:8000/TelefonosCliente/';
-const URI5 = 'http://localhost:8000/TiposCliente/';
+
+const URI = `${API}/Clientes/`;
+const URI2 = `${API}/TipoCedula/`;
+const URI3 = `${API}/DireccionesCliente/`;
+const URI4 = `${API}/TelefonosCliente/`;
+const URI5 = `${API}/TiposCliente/`;
 
 const Validaciones = Yup.object().shape({
     NOMBRE: Yup.string().required('Nombre es requerido'),

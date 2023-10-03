@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 const EditarFactura = () => {
     const { ID_FACTURA } = useParams();
@@ -14,7 +15,7 @@ const EditarFactura = () => {
 
     const obtenerFactura = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/Facturacion/${ID_FACTURA}`);
+            const response = await axios.get(`${API}/Facturacion/${ID_FACTURA}`);
             const facturaData = response.data;
 
             setFactura(facturaData);
@@ -31,7 +32,7 @@ const EditarFactura = () => {
 
     const obtenerDetalleFactura = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/Facturacion/${ID_FACTURA}/detalle`);
+            const response = await axios.get(`${API}/Facturacion/${ID_FACTURA}/detalle`);
             const detalleFacturaData = response.data;
 
             setDetalleFactura(detalleFacturaData);
@@ -112,7 +113,7 @@ const EditarFactura = () => {
 
         try {
             // Actualizar la factura
-            await axios.put(`http://localhost:8000/Facturacion/${ID_FACTURA}`, factura);
+            await axios.put(`${API}/Facturacion/${ID_FACTURA}`, factura);
 
             // Verificar que haya al menos un detalle agregado antes de enviarlo al backend
             if (detalleFactura.length === 0) {
@@ -133,7 +134,7 @@ const EditarFactura = () => {
 
             // Actualizar el detalle de la factura
             await axios.put(
-                `http://localhost:8000/Facturacion/${ID_FACTURA}/detalle`,
+                `${API}/Facturacion/${ID_FACTURA}/detalle`,
                 { detallesFactura: detallesFacturaArray }
             );
 

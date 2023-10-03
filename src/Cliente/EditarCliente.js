@@ -3,13 +3,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
-const URI = 'http://localhost:8000/Clientes/';
-const URI2 = 'http://localhost:8000/TipoCedula/';
-const URI3 = 'http://localhost:8000/DireccionesCliente/';
-const URI4 = 'http://localhost:8000/TelefonosCliente/';
-const URI5 = 'http://localhost:8000/TiposCliente/';
+const URI = `${API}/Clientes/`;
+const URI2 = `${API}/TipoCedula/`;
+const URI3 = `${API}/DireccionesCliente/`;
+const URI4 = `${API}/TelefonosCliente/`;
+const URI5 = `${API}/TiposCliente/`;
 
 
 const EditarCliente = () => {

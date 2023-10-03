@@ -3,9 +3,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
-const URI = 'http://localhost:8000/Pagos/'
+
+const URI = `${API}/Pagos/`
 
 const EditarPago = () => {
     const [FECHA_INGRESO, setFecha_ingreso] = useState('')

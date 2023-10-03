@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 const EditarCompra = () => {
     const { NUM_DOCUMENTO } = useParams();
@@ -10,7 +11,7 @@ const EditarCompra = () => {
 
     const obtenerCompra = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/Compras/${NUM_DOCUMENTO}`);
+            const response = await axios.get(`${API}/Compras/${NUM_DOCUMENTO}`);
             const compraData = response.data;
 
             setCompra(compraData);
@@ -27,7 +28,7 @@ const EditarCompra = () => {
 
     const obtenerDetalleCompra = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/Compras/${NUM_DOCUMENTO}/detalle`);
+            const response = await axios.get(`${API}/Compras/${NUM_DOCUMENTO}/detalle`);
             const detalleCompraData = response.data;
 
             setDetalleCompra(detalleCompraData);
@@ -69,7 +70,7 @@ const EditarCompra = () => {
 
         try {
             // Actualizar la compra
-            await axios.put(`http://localhost:8000/Compras/${NUM_DOCUMENTO}`, compra);
+            await axios.put(`${API}/Compras/${NUM_DOCUMENTO}`, compra);
 
             // Verificar que haya al menos un detalle agregado antes de enviarlo al backend
             if (detalleCompra.length === 0) {
@@ -89,7 +90,7 @@ const EditarCompra = () => {
 
             // Actualizar el detalle de la compra
             await axios.put(
-                `http://localhost:8000/Compras/${NUM_DOCUMENTO}/detalle`,
+                `${API}/Compras/${NUM_DOCUMENTO}/detalle`,
                 detallesCompraArray
             );
 

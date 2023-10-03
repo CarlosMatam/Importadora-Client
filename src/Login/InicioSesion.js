@@ -6,9 +6,10 @@ import * as Yup from 'yup';
 import { CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBContainer } from 'cdbreact';
 import '../CSS/Login.css'
 import fondo from '../FondoLogin.jpg';
+import API from '../utils/httpClient';
 
 
-const URI = 'http://localhost:8000/Login/';
+const URI = `${API}/Login/`;
 
 const Validaciones = Yup.object().shape({
     LOGIN_USER: Yup.string().required('¡Usuario Requerido!'),

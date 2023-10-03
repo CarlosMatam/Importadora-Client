@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 const IVA_PORCENTAJE = 0.13; // Valor del IVA (13%)
 
@@ -42,7 +43,7 @@ const CrearCompra = () => {
 
     const obtenerCompanias = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/Companias');
+            const response = await axios.get(`${API}/Companias`);
             setCompanias(response.data);
         } catch (error) {
             console.error('Error al obtener las compañías:', error);
@@ -51,7 +52,7 @@ const CrearCompra = () => {
 
     const obtenerProveedores = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/Proveedores');
+            const response = await axios.get(`${API}/Proveedores`);
             setProveedores(response.data);
         } catch (error) {
             console.error('Error al obtener los proveedores:', error);
@@ -60,7 +61,7 @@ const CrearCompra = () => {
 
     const obtenerBodegas = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/Bodegas');
+            const response = await axios.get(`${API}/Bodegas`);
             setBodegas(response.data);
         } catch (error) {
             console.error('Error al obtener las bodegas:', error);
@@ -69,7 +70,7 @@ const CrearCompra = () => {
 
     const obtenerProductos = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/Productos');
+            const response = await axios.get(`${API}/Productos`);
             setProductos(response.data);
         } catch (error) {
             console.error('Error al obtener los productos:', error);
@@ -140,7 +141,7 @@ const CrearCompra = () => {
 
         if (value !== '') {
             try {
-                const response = await axios.get(`http://localhost:8000/Productos/buscar/${value}`);
+                const response = await axios.get(`${API}/Productos/buscar/${value}`);
                 const productoData = response.data;
 
                 if (productoData) {
@@ -238,7 +239,7 @@ const CrearCompra = () => {
 
 
         try {
-            await axios.post('http://localhost:8000/Compras', nuevaCompra);
+            await axios.post(`${API}/Compras`, nuevaCompra);
             alert('Compra creada correctamente.');
             limpiarCompra();
             setDetalleCompra([]);

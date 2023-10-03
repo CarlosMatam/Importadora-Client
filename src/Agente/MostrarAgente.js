@@ -3,9 +3,10 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
-const URI = 'http://localhost:8000/Agentes/'
+const URI = `${API}/Agentes`
 
 
 const MostrarAG = () => {

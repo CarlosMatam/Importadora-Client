@@ -3,13 +3,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
 
-const URI = 'http://localhost:8000/Proveedores/'
-const URI2 = 'http://localhost:8000/TipoCedula/'
-const URI3 = 'http://localhost:8000/DireccionesProvee/'
-const URI4 = 'http://localhost:8000/TelefonosProvee/'
+const URI = `${API}/Proveedores/`
+const URI2 = `${API}/TipoCedula/`
+const URI3 = `${API}/DireccionesProvee/`
+const URI4 = `${API}/TelefonosProvee/`
 
 
 const EditarProveedor = () => {

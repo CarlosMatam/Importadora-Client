@@ -3,11 +3,13 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
 
-const URI = 'http://localhost:8000/Pagos/'
-const URI2 = 'http://localhost:8000/Proveedores/'
+
+const URI = `${API}/Pagos/`
+const URI2 = `${API}/Proveedores/`
 
 const CrearPago = () => {
 

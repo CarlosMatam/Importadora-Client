@@ -5,12 +5,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Sidebar from '../Components/Sidebar';
+import API from '../utils/httpClient';
 
 
-const URI = 'http://localhost:8000/Productos/';
-const URI2 = 'http://localhost:8000/Companias/';
-const URI3 = 'http://localhost:8000/Proveedores/';
-const URI4 = 'http://localhost:8000/Cabys';
+const URI = `${API}/Productos/`;
+const URI2 = `${API}/Companias/`;
+const URI3 = `${API}/Proveedores/`;
+const URI4 = `${API}/Cabys`;
 
 const Validaciones = Yup.object().shape({
     ID_PRODUCTO: Yup.string().required('Codigo es requerido'),
