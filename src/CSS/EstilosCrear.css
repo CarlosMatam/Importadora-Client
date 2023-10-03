@@ -1,0 +1,30 @@
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:10px;
+}
+label{
+    font-family: serif;
+    color:#ffffff;
+    font-size:16px;
+    background-color: #988FC6;
+}
+h5{
+    font-family: serif;
+    color:#ffffff;
+    font-size:14px;
+    background-color: #988FC6;
+}
+Link{
+    font-family: serif;
+    color: #ffffff;
+    font-size:14px;
+    background-color: #817ADA;
+}
+button{
+    font-family: serif;
+    color: #ffffff;
+    font-size:14px;
+    font-weight: bold;
+}

@@ -1,0 +1,32 @@
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:10px;
+}
+CDBCardBody{
+    background-color: #E5F4E3;
+}
+h3{
+    font-family: serif;
+    color:#ffffff;
+    font-size:16px;
+    background-color: #988FC6;
+    border-color: #000;
+}
+label{
+    font-family: sans-serif;
+    color: #000;
+    font-size:14px;
+    background-color: #F4F4F4;
+}
+Link{
+    font-family: sans-serif;
+    font-size:12px;
+}
+CDBBtn{
+    font-family: serif;
+    color: #ffffff;
+    font-size:14px;
+    font-weight: bold;
+}

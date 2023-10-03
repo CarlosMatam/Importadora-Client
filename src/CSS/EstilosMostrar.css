@@ -1,0 +1,36 @@
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:10px;
+}
+th{
+    font-family: serif;
+    color:#ffffff;
+    font-size:16px;
+    background-color: #988FC6;
+}
+td{
+    font-family: sans-serif;
+    color: #000;
+    font-size:14px;
+    background-color: #F4F4F4;
+}
+Link{
+    font-family: serif;
+    color: #ffffff;
+    font-size:14px;
+    background-color: #817ADA;
+}
+button{
+    font-family: serif;
+    color: #ffffff;
+    font-size:14px;
+    font-weight: bold;
+}
+label{
+    font-family: serif;
+    color: #000;
+    font-size:14px;
+    background-color: #E5F4E3;
+}
