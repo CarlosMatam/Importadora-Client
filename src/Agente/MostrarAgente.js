@@ -87,8 +87,8 @@ const MostrarAG = () => {
                                     <td> {Agente.identificacion} </td>
                                     <td>
 
-                                        <Link to={`/edit/${Agente.ID_AGENTE}`} className='btn btn-info'>Editar</Link>
-                                        <button onClick={() => deleteAgente(Agente.ID_AGENTE)} className='btn btn-danger'>Eliminar</button>
+                                        <Link to={`/edit/${Agente.id_agente}`} className='btn btn-info'>Editar</Link>
+                                        <button onClick={() => deleteAgente(Agente.id_agente)} className='btn btn-danger'>Eliminar</button>
                                     </td>
                                 </tr>
                             ))}
