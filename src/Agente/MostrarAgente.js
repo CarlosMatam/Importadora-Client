@@ -79,9 +79,9 @@ const MostrarAG = () => {
                                     <td> {Agente.APELLIDO_PATERNO} </td>
                                     <td> {Agente.APELLIDO_MATERNO} </td>
 
-                                    <td> {Agente.TAB_DIRECCIONES_AGENTES_VENTA.PROVINCIA} </td>
-                                    <td> {Agente.TAB_TELEFONOS_AGENTES_VENTA.TELEFONO_1} </td>
-                                    <td> {Agente.TAB_TELEFONOS_AGENTES_VENTA.TELEFONO_2} </td>
+                                    <td> {Agente.tab_direcciones_agentes_venta.provincia} </td>
+                                    <td> {Agente.tab_telefonos_agentes_venta.telefono_1} </td>
+                                    <td> {Agente.tab_telefonos_agentes_venta.telefono_2} </td>
                                     <td> {Agente.COMISION_POR_VENTA} </td>
                                     <td> {Agente.TAB_ZONA.NOMBRE} </td>
                                     <td> {Agente.IDENTIFICACION} </td>
