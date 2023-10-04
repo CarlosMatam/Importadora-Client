@@ -74,17 +74,17 @@ const MostrarAG = () => {
                         </thead>
                         <tbody>
                             {resultado.map((Agente) => (
-                                <tr key={Agente.ID_AGENTE}>
-                                    <td> {Agente.NOMBRE} </td>
-                                    <td> {Agente.APELLIDO_PATERNO} </td>
-                                    <td> {Agente.APELLIDO_MATERNO} </td>
+                                <tr key={Agente.id_agente}>
+                                    <td> {Agente.nombre} </td>
+                                    <td> {Agente.apellido_paterno} </td>
+                                    <td> {Agente.apellido_materno} </td>
 
                                     <td> {Agente.tab_direcciones_agentes_venta.provincia} </td>
                                     <td> {Agente.tab_telefonos_agentes_venta.telefono_1} </td>
                                     <td> {Agente.tab_telefonos_agentes_venta.telefono_2} </td>
-                                    <td> {Agente.COMISION_POR_VENTA} </td>
-                                    <td> {Agente.TAB_ZONA.NOMBRE} </td>
-                                    <td> {Agente.IDENTIFICACION} </td>
+                                    <td> {Agente.comision_por_venta} </td>
+                                    <td> {Agente.tab_zona.nombre} </td>
+                                    <td> {Agente.identificacion} </td>
                                     <td>
 
                                         <Link to={`/edit/${Agente.ID_AGENTE}`} className='btn btn-info'>Editar</Link>
