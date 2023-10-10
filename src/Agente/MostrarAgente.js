@@ -26,8 +26,8 @@ const MostrarAG = () => {
     }
 
     //procedimineto para eliminar un Agente
-    const deleteAgente = async (ID_AGENTE) => {
-        await axios.delete(`${URI}${ID_AGENTE}`)
+    const deleteAgente = async (id_agente) => {
+        await axios.delete(`${URI}${id_agente}`)
         getAgentes()
     }
 
@@ -42,7 +42,7 @@ const MostrarAG = () => {
         resultado = Agentes
     } else {
         resultado = Agentes.filter((dato) =>
-            dato.NOMBRE.toLowerCase().includes(search.toLocaleLowerCase()));
+            dato.nombre.toLowerCase().includes(search.toLocaleLowerCase()));
     }
 
 
