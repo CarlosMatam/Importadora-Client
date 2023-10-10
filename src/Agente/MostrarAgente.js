@@ -6,7 +6,7 @@ import Sidebar from '../Components/Sidebar';
 import API from '../utils/httpClient';
 
 
-const URI = `${API}/Agentes`
+const URI = `${API}/Agentes/`
 
 
 const MostrarAG = () => {
