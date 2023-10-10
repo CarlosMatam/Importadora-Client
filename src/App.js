@@ -69,7 +69,7 @@ function App() {
               <Route path='/' element={<MostrarAG />} />
               <Route path='/create' element={<CrearAgente />} />
               <Route path='/Proveedores/create' element={<CrearProveedor />} />
-              <Route path='/edit/:ID_AGENTE' element={<EditarAgente />} />
+              <Route path='/edit/:id_agente' element={<EditarAgente />} />
               <Route path='/Proveedores/edit/:ID_PROVEEDOR' element={<EditarProveedor />} />
               <Route path='/Transportes' element={<MostrarTransporte />} />
               <Route path='/Transportes/create' element={<CrearTransporte />} />
