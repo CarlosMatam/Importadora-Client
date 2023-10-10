@@ -88,8 +88,8 @@ const EditarAgente = () => {
 
         // Establecer los estados de los teléfonos y direcciones
         setTelefono_1(telefonosRes.data.telefono_1);
-        setTelefono_2(telefonosRes.data.telefono__2);
-        setTelefono_3(telefonosRes.data.telefono__3);
+        setTelefono_2(telefonosRes.data.telefono_2);
+        setTelefono_3(telefonosRes.data.telefono_3);
         setProvincia(direccionesRes.data.provincia);
         setCanton(direccionesRes.data.canton);
         setDistrito(direccionesRes.data.distrito);
