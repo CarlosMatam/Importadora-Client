@@ -233,8 +233,8 @@ const CrearCompra = () => {
         const nuevaCompra = {
             ...compra,
             detallesCompra: detalleCompra,
-            TOTAL: totalConIVA,
-            DESCUENTO: descuentoTotal,
+            total: totalConIVA,
+            descuento: descuentoTotal,
         };
 
 
