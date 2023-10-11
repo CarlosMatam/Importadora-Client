@@ -110,7 +110,7 @@ const EditarCliente = () => {
 
                 <h3>Edit POST</h3>
                 <form onSubmit={update}>
-                    <div className='mb-3'>
+                    <div className='col-md-3 mb-4'>
                         <label className='form-label'>Nombre</label>
                         <input
                             value={nombre}
@@ -119,7 +119,7 @@ const EditarCliente = () => {
                             className='form-control'
                         />
                     </div>
-                    <div className='mb-3'>
+                    <div className='col-md-3 mb-4'>
                         <label className='form-label'>Primer Apellido</label>
                         <textarea
                             value={apellido_paterno}
@@ -129,7 +129,7 @@ const EditarCliente = () => {
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div className='col-md-3 mb-4'>
                         <label className='form-label'>Segundo Apellido</label>
                         <textarea
                             value={apellido_materno}
@@ -141,7 +141,7 @@ const EditarCliente = () => {
 
 
 
-                    <div className='mb-3'>
+                    <div className='col-md-3 mb-4'>
                         <label className='form-label'>ID_TIPO_CLIENTE</label>
                         <textarea
                             value={id_tipo_cliente}
@@ -151,7 +151,7 @@ const EditarCliente = () => {
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div className='col-md-3 mb-4'>
                         <label className='form-label'>CORREO</label>
                         <textarea
                             value={correo}
@@ -161,7 +161,7 @@ const EditarCliente = () => {
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div className='col-md-3 mb-4'>
                         <label className='form-label'>TIPO_CEDULA</label>
                         <textarea
                             value={tipo_cedula}
@@ -171,7 +171,7 @@ const EditarCliente = () => {
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div className='col-md-3 mb-4'>
                         <label className='form-label'>CEDULA</label>
                         <textarea
                             value={cedula}
@@ -181,7 +181,7 @@ const EditarCliente = () => {
                         />
                     </div>
 
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Teléfono 1</label>
                         <input
                             value={telefono_1}
@@ -190,7 +190,7 @@ const EditarCliente = () => {
                             className="form-control"
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Teléfono 2</label>
                         <input
                             value={telefono_2}
@@ -199,7 +199,7 @@ const EditarCliente = () => {
                             className="form-control"
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Teléfono 3</label>
                         <input
                             value={telefono_3}
@@ -209,7 +209,7 @@ const EditarCliente = () => {
                         />
                     </div>
 
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Provincia</label>
                         <input
                             value={provincia}
@@ -218,7 +218,7 @@ const EditarCliente = () => {
                             className="form-control"
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Cantón</label>
                         <input
                             value={canton}
@@ -227,7 +227,7 @@ const EditarCliente = () => {
                             className="form-control"
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Distrito</label>
                         <input
                             value={distrito}
@@ -236,7 +236,7 @@ const EditarCliente = () => {
                             className="form-control"
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Barrio</label>
                         <input
                             value={barrio}
@@ -245,7 +245,7 @@ const EditarCliente = () => {
                             className="form-control"
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className='col-md-3 mb-4'>
                         <label className="form-label">Otras señas</label>
                         <input
                             value={otras_sennas}
