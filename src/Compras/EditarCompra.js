@@ -5,13 +5,13 @@ import Sidebar from '../Components/Sidebar';
 import API from '../utils/httpClient';
 
 const EditarCompra = () => {
-    const { NUM_DOCUMENTO } = useParams();
+    const { num_documento } = useParams();
     const [compra, setCompra] = useState({});
     const [detalleCompra, setDetalleCompra] = useState([]);
 
     const obtenerCompra = async () => {
         try {
-            const response = await axios.get(`${API}/Compras/${NUM_DOCUMENTO}`);
+            const response = await axios.get(`${API}/Compras/${num_documento}`);
             const compraData = response.data;
 
             setCompra(compraData);
@@ -70,7 +70,7 @@ const EditarCompra = () => {
 
         try {
             // Actualizar la compra
-            await axios.put(`${API}/Compras/${NUM_DOCUMENTO}`, compra);
+            await axios.put(`${API}/Compras/${num_documento}`, compra);
 
             // Verificar que haya al menos un detalle agregado antes de enviarlo al backend
             if (detalleCompra.length === 0) {
@@ -81,16 +81,16 @@ const EditarCompra = () => {
 
             // Crear un arreglo de detalles de compra para enviar al servidor
             const detallesCompraArray = detalleCompra.map((detalle) => ({
-                ID_DETALLE: detalle.ID_DETALLE,
-                ID_PRODUCTO: detalle.ID_PRODUCTO,
-                CANTIDAD: detalle.CANTIDAD,
-                SUBTOTAL: detalle.SUBTOTAL,
-                DESCUENTO: detalle.DESCUENTO,
+                id_detalle: detalle.id_detalle,
+                id_producto: detalle.id_producto,
+                cantidad: detalle.cantidad,
+                subtotal: detalle.subtotal,
+                descuento: detalle.descuento,
             }));
 
             // Actualizar el detalle de la compra
             await axios.put(
-                `${API}/Compras/${NUM_DOCUMENTO}/detalle`,
+                `${API}/Compras/${num_documento}/detalle`,
                 detallesCompraArray
             );
 
@@ -122,36 +122,36 @@ const EditarCompra = () => {
                 <label>Compañía:</label>
                 <input
                     type="text"
-                    name="ID_COMPANIA"
-                    value={compra.ID_COMPANIA || ''}
+                    name="id_compania"
+                            value={compra.id_compania || ''}
                             onChange={handleInputChange} 
                 />
                         <label >Proveedor:</label>
                 <input
                     type="text"
-                    name="ID_PROVEEDOR"
-                    value={compra.ID_PROVEEDOR || ''}
+                    name="id_proveedor"
+                            value={compra.id_proveedor || ''}
                             onChange={handleInputChange} 
                 />
                         <label >Bodega:</label>
                 <input
                     type="text"
-                    name="ID_BODEGA"
-                    value={compra.ID_BODEGA || ''}
+                    name="id_bodega"
+                            value={compra.id_bodega || ''}
                             onChange={handleInputChange} 
                 />
                         <label style={{ marginLeft: '5px' }}>Fecha:</label>
                 <input
                     type="date"
-                    name="FECHA"
-                    value={compra.FECHA || ''}
+                    name="fecha"
+                            value={compra.fecha || ''}
                             onChange={handleInputChange}
                 />
                         <label style={{ marginLeft: '5px' }}>Total:</label>
                 <input
                     type="text"
-                    name="TOTAL"
-                    value={compra.TOTAL || ''}
+                    name="total"
+                            value={compra.total || ''}
                             onChange={handleInputChange} style={{ marginLeft: '5px' }}
                 />
                 <hr />
@@ -161,29 +161,29 @@ const EditarCompra = () => {
                         <label>ID Producto:</label>
                         <input
                             type="text"
-                            name={`ID_PRODUCTO`}
-                            value={detalle.ID_PRODUCTO || ''}
+                            name={`id_producto`}
+                            value={detalle.id_producto || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <label>Cantidad:</label>
                         <input
                             type="number"
-                            name={`detalleCompra[${index}].CANTIDAD`}
-                            value={detalle.CANTIDAD || ''}
+                            name={`detalleCompra[${index}].cantidad`}
+                            value={detalle.cantidad || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <label>Subtotal:</label>
                         <input
                             type="number"
-                            name={`detalleCompra[${index}].SUBTOTAL`}
-                            value={detalle.SUBTOTAL || ''}
+                            name={`detalleCompra[${index}].subtotal`}
+                            value={detalle.subtotal || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <label>Descuento:</label>
                         <input
                             type="number"
-                            name={`detalleCompra[${index}].DESCUENTO`}
-                            value={detalle.DESCUENTO || ''}
+                            name={`detalleCompra[${index}].descuento`}
+                            value={detalle.descuento || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <button type="button" onClick={() => eliminarDetalle(index)}>Eliminar Detalle</button>

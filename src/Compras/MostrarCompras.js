@@ -25,9 +25,9 @@ const MostrarCompras = () => {
     };
 
     // Procedimiento para eliminar una compra
-    const deleteCompra = async (NUM_DOCUMENTO) => {
+    const deleteCompra = async (num_documento) => {
         try {
-            await axios.delete(`${URI}${NUM_DOCUMENTO}`);
+            await axios.delete(`${URI}${num_documento}`);
             getCompras();
         } catch (error) {
             console.error('Error deleting data:', error);
@@ -44,7 +44,7 @@ const MostrarCompras = () => {
         resultado = compras;
     } else {
         resultado = compras.filter((compra) =>
-            compra.NUM_DOCUMENTO.toString().includes(search.toLowerCase())
+            compra.num_documento.toString().includes(search.toLowerCase())
         );
     }
 
@@ -80,22 +80,22 @@ const MostrarCompras = () => {
                         </thead>
                         <tbody>
                             {resultado.map((compra) => (
-                                <tr key={compra.NUM_DOCUMENTO}>
-                                    <td>{compra.NUM_DOCUMENTO}</td>
-                                    <td>{compra.TAB_COMPANIA.NOMBRE}</td>
-                                    <td>{compra.TAB_BODEGA.NOMBRE}</td>
-                                    <td>{compra.TAB_PROVEEDORE.NOMBRE}</td>
-                                    <td>{compra.FECHA}</td>
-                                    <td>{compra.TOTAL}</td>
+                                <tr key={compra.num_documento}>
+                                    <td>{compra.num_documento}</td>
+                                    <td>{compra.tab_compania.nombre}</td>
+                                    <td>{compra.tab_bodega.nombre}</td>
+                                    <td>{compra.tab_proveedore.nombre}</td>
+                                    <td>{compra.fecha}</td>
+                                    <td>{compra.total}</td>
                                     <td>
                                         <Link
-                                            to={`/Compras/edit/${compra.NUM_DOCUMENTO}`}
+                                            to={`/Compras/edit/${compra.num_documento}`}
                                             className='btn btn-info'
                                         >
                                             Editar
                                         </Link>
                                         <button
-                                            onClick={() => deleteCompra(compra.NUM_DOCUMENTO)}
+                                            onClick={() => deleteCompra(compra.num_documento)}
                                             className='btn btn-danger'
                                         >
                                             Eliminar

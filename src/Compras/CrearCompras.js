@@ -3,7 +3,7 @@ import axios from 'axios';
 import Sidebar from '../Components/Sidebar';
 import API from '../utils/httpClient';
 
-const IVA_PORCENTAJE = 0.13; // Valor del IVA (13%)
+const iva_porcentaje = 0.13; // Valor del IVA (13%)
 
 const CrearCompra = () => {
     const [companias, setCompanias] = useState([]);
@@ -17,19 +17,19 @@ const CrearCompra = () => {
     const [totalConIVA, setTotalConIVA] = useState(0); // Total con IVA incluido
     const [iva, setIVA] = useState(0); // IVA
     const [compra, setCompra] = useState({
-        ID_COMPANIA: '',
-        ID_PROVEEDOR: '',
-        ID_BODEGA: '',
-        FECHA: new Date().toISOString().slice(0, 10),
+        id_compania: '',
+        id_proveedor: '',
+        id_bodega: '',
+        fecha: new Date().toISOString().slice(0, 10),
     });
     const [producto, setProducto] = useState({
-        ID_PRODUCTO: '',
-        DESCRIPCION: '',
-        CANTIDAD: '',
-        PRECIO: '',
-        PORC_DESCUENTO: '',
+        id_producto: '',
+        descripcion: '',
+        cantidad: '',
+        precio: '',
+        porc_descuento: '',
 
-        PRECIO_TOTAL: 0,
+        precio_total: 0,
     });
 
     const [codigoProducto, setCodigoProducto] = useState('');
@@ -94,18 +94,18 @@ const CrearCompra = () => {
     };
 
     const handleAgregarProducto = () => {
-        if (producto.CANTIDAD > 0 && producto.PRECIO > 0) {
-            const precioSinDescuento = producto.CANTIDAD * producto.PRECIO;
-            const descuento = precioSinDescuento * (producto.PORC_DESCUENTO / 100);
+        if (producto.cantidad > 0 && producto.precio > 0) {
+            const precioSinDescuento = producto.cantidad * producto.precio;
+            const descuento = precioSinDescuento * (producto.porc_descuento / 100);
             const precioConDescuento = precioSinDescuento - descuento;
 
             const nuevoProducto = {
                 ...producto,
-                PRECIO_TOTAL: precioConDescuento,
+                precio_total: precioConDescuento,
             };
 
             // Asignar el número de documento a cada detalle de compra antes de agregarlo al estado
-            nuevoProducto.NUM_DOCUMENTO = compra.NUM_DOCUMENTO;
+            nuevoProducto.num_documento = compra.num_documento;
 
             setDetalleCompra((prevDetalleCompra) => [...prevDetalleCompra, nuevoProducto]);
             limpiarProducto();
@@ -117,21 +117,21 @@ const CrearCompra = () => {
 
     const limpiarProducto = () => {
         setProducto({
-            ID_PRODUCTO: '',
-            DESCRIPCION: '',
-            CANTIDAD: '',
-            PRECIO: '',
-            PORC_DESCUENTO: '',
-            PRECIO_TOTAL: 0,
+            id_producto: '',
+            descripcion: '',
+            cantidad: '',
+            precio: '',
+            porc_descuento: '',
+            precio_total: 0,
         });
     };
 
     const limpiarCompra = () => {
         setCompra({
-            ID_COMPANIA: '',
-            ID_PROVEEDOR: '',
-            ID_BODEGA: '',
-            FECHA: new Date().toISOString().slice(0, 10),
+            id_compania: '',
+            id_proveedor: '',
+            id_bodega: '',
+            fecha: new Date().toISOString().slice(0, 10),
         });
     };
 
@@ -147,24 +147,24 @@ const CrearCompra = () => {
                 if (productoData) {
                     setProducto((prevProducto) => ({
                         ...prevProducto,
-                        ID_PRODUCTO: productoData.ID_PRODUCTO,
-                        DESCRIPCION: productoData.DESCRIPCION,
-                        CANTIDAD: '',
-                        PRECIO: productoData.PRECIO,
-                        PORC_DESCUENTO: productoData.DESCUENTO,
+                        id_producto: productoData.id_producto,
+                        descripcion: productoData.descripcion,
+                        cantidad: '',
+                        precio: productoData.precio,
+                        porc_descuento: productoData.descuento,
 
-                        PRECIO_TOTAL: 0,
+                        precio_total: 0,
                     }));
                 } else {
                     setProducto((prevProducto) => ({
                         ...prevProducto,
-                        ID_PRODUCTO: '',
-                        DESCRIPCION: '',
-                        CANTIDAD: '',
-                        PRECIO: '',
-                        PORC_DESCUENTO: '',
+                        id_producto: '',
+                        descripcion: '',
+                        cantidad: '',
+                        precio: '',
+                        porc_descuento: '',
 
-                        PRECIO_TOTAL: 0,
+                        precio_total: 0,
                     }));
                 }
             } catch (error) {
@@ -173,24 +173,24 @@ const CrearCompra = () => {
         } else {
             setProducto((prevProducto) => ({
                 ...prevProducto,
-                ID_PRODUCTO: '',
-                DESCRIPCION: '',
-                CANTIDAD: '',
-                PRECIO: '',
-                PORC_DESCUENTO: '',
+                id_producto: '',
+                descripcion: '',
+                cantidad: '',
+                precio: '',
+                porc_descuento: '',
 
-                PRECIO_TOTAL: 0,
+                precio_total: 0,
             }));
         }
     };
 
     useEffect(() => {
         const calcularTotales = () => {
-            const subtotal = detalleCompra.reduce((total, producto) => total + producto.PRECIO_TOTAL, 0);
+            const subtotal = detalleCompra.reduce((total, producto) => total + producto.precio_total, 0);
             setSubtotal(subtotal);
 
             const descuentoTotal = detalleCompra.reduce(
-                (total, producto) => total + (producto.CANTIDAD * producto.PRECIO * producto.PORC_DESCUENTO) / 100,
+                (total, producto) => total + (producto.cantidad * producto.precio * producto.porc_descuento) / 100,
                 0
             );
             setDescuentoTotal(descuentoTotal);
@@ -198,10 +198,10 @@ const CrearCompra = () => {
             const total = subtotal;
             setTotal(total);
 
-            const totalConIVA = total * (1 + IVA_PORCENTAJE);
+            const totalConIVA = total * (1 + iva_porcentaje);
             setTotalConIVA(totalConIVA);
 
-            const iva = total * IVA_PORCENTAJE;
+            const iva = total * iva_porcentaje;
             setIVA(iva);
         };
 
@@ -209,7 +209,7 @@ const CrearCompra = () => {
     }, [detalleCompra]);
 
     const crearCompra = async () => {
-        if (!compra.ID_COMPANIA || !compra.ID_PROVEEDOR || !compra.ID_BODEGA) {
+        if (!compra.id_compania || !compra.id_proveedor || !compra.id_bodega) {
             alert('Debe seleccionar una compañía, un proveedor y una bodega.');
             return;
         }
@@ -220,13 +220,13 @@ const CrearCompra = () => {
         }
 
         // Calcular los totales antes de enviar la compra al servidor
-        const subtotal = detalleCompra.reduce((total, producto) => total + producto.PRECIO_TOTAL, 0);
+        const subtotal = detalleCompra.reduce((total, producto) => total + producto.precio_total, 0);
         const descuentoTotal = detalleCompra.reduce(
-            (total, producto) => total + (producto.CANTIDAD * producto.PRECIO * producto.PORC_DESCUENTO) / 100,
+            (total, producto) => total + (producto.cantidad * producto.precio * producto.porc_descuento) / 100,
             0
         );
         const total = subtotal;
-        const iva = total * IVA_PORCENTAJE;
+        const iva = total * iva_porcentaje;
         const totalConIVA = total + iva;
 
 
@@ -273,14 +273,14 @@ const CrearCompra = () => {
                     <label htmlFor="compania">Compañía:</label>
                     <select
                         id="compania"
-                        name="ID_COMPANIA"
-                        value={compra.ID_COMPANIA}
+                        name="id_compania"
+                         value={compra.id_compania}
                         onChange={handleCompraChange}
                     >
                         <option value="">Seleccionar Compañía</option>
                         {companias.map((compania) => (
-                            <option key={compania.ID_COMPANIA} value={compania.ID_COMPANIA}>
-                                {compania.NOMBRE}
+                            <option key={compania.id_compania} value={compania.id_compania}>
+                                {compania.nombre}
                             </option>
                         ))}
                     </select>
@@ -289,25 +289,25 @@ const CrearCompra = () => {
                     <label htmlFor="proveedor">Proveedor:</label>
                     <select
                         id="proveedor"
-                        name="ID_PROVEEDOR"
-                        value={compra.ID_PROVEEDOR}
+                        name="id_proveedor"
+                        value={compra.id_proveedor}
                         onChange={handleCompraChange}
                     >
                         <option value="">Seleccionar Proveedor</option>
                         {proveedores.map((proveedor) => (
-                            <option key={proveedor.ID_PROVEEDOR} value={proveedor.ID_PROVEEDOR}>
-                                {proveedor.NOMBRE}
+                            <option key={proveedor.id_proveedor} value={proveedor.id_proveedor}>
+                                {proveedor.nombre}
                             </option>
                         ))}
                     </select>
                 </div>
                         <div className="col-md-3 mb-4">
                     <label htmlFor="bodega">Bodega:</label>
-                    <select id="bodega" name="ID_BODEGA" value={compra.ID_BODEGA} onChange={handleCompraChange}>
+                            <select id="bodega" name="id_bodega" value={compra.id_bodega} onChange={handleCompraChange}>
                         <option value="">Seleccionar Bodega</option>
                         {bodegas.map((bodega) => (
-                            <option key={bodega.ID_BODEGA} value={bodega.ID_BODEGA}>
-                                {bodega.NOMBRE}
+                            <option key={bodega.id_bodega} value={bodega.id_bodega}>
+                                {bodega.nombre}
                             </option>
                         ))}
                     </select>
@@ -317,8 +317,8 @@ const CrearCompra = () => {
                     <input
                         type="date"
                         id="fecha"
-                        name="FECHA"
-                        value={compra.FECHA}
+                        name="fecha"
+                        value={compra.fecha}
                         onChange={handleCompraChange}
                     />
                 </div>
@@ -345,8 +345,8 @@ const CrearCompra = () => {
                     <input
                         type="text"
                         id="descripcion"
-                        name="DESCRIPCION"
-                        value={producto.DESCRIPCION}
+                        name="descripcion"
+                        value={producto.descripcion}
                         onChange={handleInputChange}
                         readOnly
                     />
@@ -356,8 +356,8 @@ const CrearCompra = () => {
                     <input
                         type="number"
                         id="cantidad"
-                        name="CANTIDAD"
-                        value={producto.CANTIDAD}
+                        name="cantidad"
+                        value={producto.cantidad}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -366,8 +366,8 @@ const CrearCompra = () => {
                     <input
                         type="number"
                         id="precio"
-                        name="PRECIO"
-                        value={producto.PRECIO}
+                        name="precio"
+                        value={producto.precio}
                         onChange={handleInputChange}
                         readOnly
                     />
@@ -377,8 +377,8 @@ const CrearCompra = () => {
                     <input
                         type="number"
                         id="descuento"
-                        name="PORC_DESCUENTO"
-                        value={producto.PORC_DESCUENTO}
+                        name="porc_descuento"
+                        value={producto.porc_descuento}
                         onChange={handleInputChange}
                     />
                             </div>
@@ -410,12 +410,12 @@ const CrearCompra = () => {
                         <tbody>
                             {detalleCompra.map((detalle, index) => (
                                 <tr key={index}>
-                                    <td>{detalle.ID_PRODUCTO}</td>
-                                    <td>{detalle.DESCRIPCION}</td>
-                                    <td>{detalle.CANTIDAD}</td>
-                                    <td>{detalle.PRECIO}</td>
-                                    <td>{detalle.PORC_DESCUENTO}%</td>
-                                    <td>{detalle.PRECIO_TOTAL}</td>
+                                    <td>{detalle.id_producto}</td>
+                                    <td>{detalle.descripcion}</td>
+                                    <td>{detalle.cantidad}</td>
+                                    <td>{detalle.precio}</td>
+                                    <td>{detalle.porc_descuento}%</td>
+                                    <td>{detalle.precio_total}</td>
                                     <td>
                                         <button onClick={() => eliminarDetalle(index)}>Eliminar</button>
                                     </td>

@@ -76,7 +76,7 @@ function App() {
               <Route path='/Transportes/edit/:ID_TRANSPORTE' element={<EditarTransporte />} />
               <Route path='/Clientes' element={<MostrarCliente />} />
               <Route path='/Clientes/create' element={<CrearCliente />} />
-              <Route path='/Clientes/edit/:ID_CLIENTE' element={<EditarCliente />} />
+              <Route path='/Clientes/edit/:id_cliente' element={<EditarCliente />} />
               <Route path='/Login' element={<Login />} />
               <Route path='/Facturacion/create' element={<CrearFactura />} />
               <Route path='/Compras/create' element={<CrearCompra />} />
@@ -85,7 +85,7 @@ function App() {
               <Route path='/Compras' element={<MostrarCompras />} />
               <Route path='/Facturacion' element={<MostrarF />} />
               <Route path='/Facturacion/edit/:ID_FACTURA' element={<EditarFactura />} />
-              <Route path='/Compras/edit/:NUM_DOCUMENTO' element={<EditarCompra />} />
+              <Route path='/Compras/edit/:num_documento' element={<EditarCompra />} />
               {/*<Route path='/Cabys' element={<MostrarCabys />} />*/}
               {/*<Route path='/Productos/edit/:ID_PRODUCTO' element={<EditarProducto />} />*/}
             </Routes>
