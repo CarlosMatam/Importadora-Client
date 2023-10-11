@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import Sidebar from '../Components/Sidebar';
 import API from '../utils/httpClient';
 
-const uri = `${API}/Agentes`;
+const uri = `${API}/Agentes/`;
 const uri2 = `${API}/Zonas/`;
 const uri3 = `${API}/DireccionesAgente/`;
 const uri4 = `${API}/TelefonosAgente/`;

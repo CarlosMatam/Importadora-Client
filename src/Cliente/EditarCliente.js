@@ -6,34 +6,34 @@ import Sidebar from '../Components/Sidebar';
 import API from '../utils/httpClient';
 
 
-const URI = `${API}/Clientes/`;
-const URI2 = `${API}/TipoCedula/`;
-const URI3 = `${API}/DireccionesCliente/`;
-const URI4 = `${API}/TelefonosCliente/`;
-const URI5 = `${API}/TiposCliente/`;
+const uri = `${API}/Clientes/`;
+const uri2 = `${API}/TipoCedula/`;
+const uri3 = `${API}/DireccionesCliente/`;
+const uri4 = `${API}/TelefonosCliente/`;
+const uri5 = `${API}/TiposCliente/`;
 
 
 const EditarCliente = () => {
-    const [NOMBRE, setNombre] = useState('')
-    const [APELLIDO_PATERNO, setApellido_paterno] = useState('')
-    const [APELLIDO_MATERNO, setApellido_materno] = useState('')
-    const [ID_TIPO_CLIENTE, setId_tipo_cliente] = useState('')
-    const [CORREO, setCorreo] = useState('')
-    const [TIPO_CEDULA, setTipo_cedula] = useState('')
-    const [CEDULA, setCedula] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [apellido_paterno, setApellido_paterno] = useState('')
+    const [apellido_materno, setApellido_materno] = useState('')
+    const [id_tipo_cliente, setId_tipo_cliente] = useState('')
+    const [correo, setCorreo] = useState('')
+    const [tipo_cedula, setTipo_cedula] = useState('')
+    const [cedula, setCedula] = useState('')
 
 
-    const [PROVINCIA, setProvincia] = useState('')
-    const [CANTON, setCanton] = useState('')
-    const [DISTRITO, setDistrito] = useState('')
-    const [BARRIO, setBarrio] = useState('')
-    const [OTRAS_SENNAS, setOtras_sennas] = useState('')
+    const [provincia, setProvincia] = useState('')
+    const [canton, setCanton] = useState('')
+    const [distrito, setDistrito] = useState('')
+    const [barrio, setBarrio] = useState('')
+    const [otras_sennas, setOtras_sennas] = useState('')
 
-    const [TELEFONO_1, setTelefono_1] = useState('')
-    const [TELEFONO_2, setTelefono_2] = useState('')
-    const [TELEFONO_3, setTelefono_3] = useState('')
+    const [telefono_1, setTelefono_1] = useState('')
+    const [telefono_2, setTelefono_2] = useState('')
+    const [telefono_3, setTelefono_3] = useState('')
     const navigate = useNavigate()
-    const { ID_CLIENTE } = useParams()
+    const { id_cliente } = useParams()
 
 
     //procedimiento para actualizar
@@ -41,30 +41,30 @@ const EditarCliente = () => {
         e.preventDefault();
 
         // Actualizar el agente
-        await axios.put(URI + ID_CLIENTE, {
-            NOMBRE: NOMBRE,
-            APELLIDO_PATERNO: APELLIDO_PATERNO,
-            APELLIDO_MATERNO: APELLIDO_MATERNO,
-            ID_TIPO_CLIENTE: ID_TIPO_CLIENTE,
-            CORREO: CORREO,
-            TIPO_CEDULA: TIPO_CEDULA,
-            CEDULA: CEDULA,
+        await axios.put(uri + id_cliente, {
+            nombre: nombre,
+            apellido_paterno: apellido_paterno,
+            apellido_materno: apellido_materno,
+            id_tipo_cliente: id_tipo_cliente,
+            correo: correo,
+            tipo_cedula: tipo_cedula,
+            cedula: cedula,
         });
 
         // Actualizar los teléfonos
-        await axios.put(URI4 + ID_CLIENTE, {
-            TELEFONO_1: TELEFONO_1,
-            TELEFONO_2: TELEFONO_2,
-            TELEFONO_3: TELEFONO_3
+        await axios.put(uri4 + id_cliente, {
+            telefono_1: telefono_1,
+            telefono_2: telefono_2,
+            telefono_3: telefono_3
         });
 
         // Actualizar las direcciones
-        await axios.put(URI3 + ID_CLIENTE, {
-            PROVINCIA: PROVINCIA,
-            CANTON: CANTON,
-            DISTRITO: DISTRITO,
-            BARRIO: BARRIO,
-            OTRAS_SENNAS: OTRAS_SENNAS
+        await axios.put(uri3 + id_cliente, {
+            provincia: provincia,
+            canton: canton,
+            distrito: distrito,
+            barrio: barrio,
+            otras_sennas: otras_sennas
         });
 
         navigate('/Clientes');
@@ -77,187 +77,187 @@ const EditarCliente = () => {
     }, [])
 
     const getClienteById = async () => {
-        const res = await axios.get(URI + ID_CLIENTE);
-        setNombre(res.data.NOMBRE);
-        setApellido_paterno(res.data.APELLIDO_PATERNO);
-        setApellido_materno(res.data.APELLIDO_MATERNO);
-        setId_tipo_cliente(res.data.ID_TIPO_CLIENTE);
-        setCorreo(res.data.CORREO);
-        setTipo_cedula(res.data.TIPO_CEDULA);
-        setCedula(res.data.CEDULA);
+        const res = await axios.get(uri + id_cliente);
+        setNombre(res.data.nombre);
+        setApellido_paterno(res.data.apellido_paterno);
+        setApellido_materno(res.data.apellido_materno);
+        setId_tipo_cliente(res.data.id_tipo_cliente);
+        setCorreo(res.data.correo);
+        setTipo_cedula(res.data.tipo_cedula);
+        setCedula(res.data.cedula);
 
         // Obtener los teléfonos y direcciones del agente
-        const telefonosRes = await axios.get(URI4 + ID_CLIENTE);
-        const direccionesRes = await axios.get(URI3 + ID_CLIENTE);
+        const telefonosRes = await axios.get(uri4 + id_cliente);
+        const direccionesRes = await axios.get(uri3 + id_cliente);
 
         // Establecer los estados de los teléfonos y direcciones
-        setTelefono_1(telefonosRes.data.TELEFONO_1);
-        setTelefono_2(telefonosRes.data.TELEFONO_2);
-        setTelefono_3(telefonosRes.data.TELEFONO_3);
-        setProvincia(direccionesRes.data.PROVINCIA);
-        setCanton(direccionesRes.data.CANTON);
-        setDistrito(direccionesRes.data.DISTRITO);
-        setBarrio(direccionesRes.data.BARRIO);
-        setOtras_sennas(direccionesRes.data.OTRAS_SENNAS);
+        setTelefono_1(telefonosRes.data.telefono_1);
+        setTelefono_2(telefonosRes.data.telefono_2);
+        setTelefono_3(telefonosRes.data.telefono_3);
+        setProvincia(direccionesRes.data.provincia);
+        setCanton(direccionesRes.data.canton);
+        setDistrito(direccionesRes.data.distrito);
+        setBarrio(direccionesRes.data.barrio);
+        setOtras_sennas(direccionesRes.data.otras_sennas);
     };
 
     return (
         <div style={{ display: 'flex' }}>
             {/* Coloca el Sidebar a la izquierda */}
             <Sidebar />
-        
-        <div>
 
-            <h3>Edit POST</h3>
-            <form onSubmit={update}>
-                <div className='mb-3'>
-                    <label className='form-label'>Nombre</label>
-                    <input
-                        value={NOMBRE}
-                        onChange={(e) => setNombre(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    />
-                </div>
-                <div className='mb-3'>
-                    <label className='form-label'>Primer Apellido</label>
-                    <textarea
-                        value={APELLIDO_PATERNO}
-                        onChange={(e) => setApellido_paterno(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    />
-                </div>
+            <div>
 
-                <div className='mb-3'>
-                    <label className='form-label'>Segundo Apellido</label>
-                    <textarea
-                        value={APELLIDO_MATERNO}
-                        onChange={(e) => setApellido_materno(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    />
-                </div>
+                <h3>Edit POST</h3>
+                <form onSubmit={update}>
+                    <div className='mb-3'>
+                        <label className='form-label'>Nombre</label>
+                        <input
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            type="text"
+                            className='form-control'
+                        />
+                    </div>
+                    <div className='mb-3'>
+                        <label className='form-label'>Primer Apellido</label>
+                        <textarea
+                            value={apellido_paterno}
+                            onChange={(e) => setApellido_paterno(e.target.value)}
+                            type="text"
+                            className='form-control'
+                        />
+                    </div>
 
-
-
-                <div className='mb-3'>
-                    <label className='form-label'>ID_TIPO_CLIENTE</label>
-                    <textarea
-                        value={ID_TIPO_CLIENTE}
-                        onChange={(e) => setId_tipo_cliente(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    />
-                </div>
-
-                <div className='mb-3'>
-                    <label className='form-label'>CORREO</label>
-                    <textarea
-                        value={CORREO}
-                        onChange={(e) => setCorreo(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    />
-                </div>
-
-                <div className='mb-3'>
-                    <label className='form-label'>TIPO_CEDULA</label>
-                    <textarea
-                        value={TIPO_CEDULA}
-                        onChange={(e) => setTipo_cedula(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    />
-                </div>
-
-                <div className='mb-3'>
-                    <label className='form-label'>CEDULA</label>
-                    <textarea
-                        value={CEDULA}
-                        onChange={(e) => setCedula(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    />
-                </div>
-
-                <div className="mb-3">
-                    <label className="form-label">Teléfono 1</label>
-                    <input
-                        value={TELEFONO_1}
-                        onChange={(e) => setTelefono_1(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Teléfono 2</label>
-                    <input
-                        value={TELEFONO_2}
-                        onChange={(e) => setTelefono_2(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Teléfono 3</label>
-                    <input
-                        value={TELEFONO_3}
-                        onChange={(e) => setTelefono_3(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
-
-                <div className="mb-3">
-                    <label className="form-label">Provincia</label>
-                    <input
-                        value={PROVINCIA}
-                        onChange={(e) => setProvincia(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Cantón</label>
-                    <input
-                        value={CANTON}
-                        onChange={(e) => setCanton(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Distrito</label>
-                    <input
-                        value={DISTRITO}
-                        onChange={(e) => setDistrito(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Barrio</label>
-                    <input
-                        value={BARRIO}
-                        onChange={(e) => setBarrio(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Otras señas</label>
-                    <input
-                        value={OTRAS_SENNAS}
-                        onChange={(e) => setOtras_sennas(e.target.value)}
-                        type="text"
-                        className="form-control"
-                    />
-                </div>
+                    <div className='mb-3'>
+                        <label className='form-label'>Segundo Apellido</label>
+                        <textarea
+                            value={apellido_materno}
+                            onChange={(e) => setApellido_materno(e.target.value)}
+                            type="text"
+                            className='form-control'
+                        />
+                    </div>
 
 
-                <button type="submit" className="btn btn-primary">Actualizar</button>
-            </form>
+
+                    <div className='mb-3'>
+                        <label className='form-label'>ID_TIPO_CLIENTE</label>
+                        <textarea
+                            value={id_tipo_cliente}
+                            onChange={(e) => setId_tipo_cliente(e.target.value)}
+                            type="text"
+                            className='form-control'
+                        />
+                    </div>
+
+                    <div className='mb-3'>
+                        <label className='form-label'>CORREO</label>
+                        <textarea
+                            value={correo}
+                            onChange={(e) => setCorreo(e.target.value)}
+                            type="text"
+                            className='form-control'
+                        />
+                    </div>
+
+                    <div className='mb-3'>
+                        <label className='form-label'>TIPO_CEDULA</label>
+                        <textarea
+                            value={tipo_cedula}
+                            onChange={(e) => setTipo_cedula(e.target.value)}
+                            type="text"
+                            className='form-control'
+                        />
+                    </div>
+
+                    <div className='mb-3'>
+                        <label className='form-label'>CEDULA</label>
+                        <textarea
+                            value={cedula}
+                            onChange={(e) => setCedula(e.target.value)}
+                            type="text"
+                            className='form-control'
+                        />
+                    </div>
+
+                    <div className="mb-3">
+                        <label className="form-label">Teléfono 1</label>
+                        <input
+                            value={telefono_1}
+                            onChange={(e) => setTelefono_1(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Teléfono 2</label>
+                        <input
+                            value={telefono_2}
+                            onChange={(e) => setTelefono_2(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Teléfono 3</label>
+                        <input
+                            value={telefono_3}
+                            onChange={(e) => setTelefono_3(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+
+                    <div className="mb-3">
+                        <label className="form-label">Provincia</label>
+                        <input
+                            value={provincia}
+                            onChange={(e) => setProvincia(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Cantón</label>
+                        <input
+                            value={canton}
+                            onChange={(e) => setCanton(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Distrito</label>
+                        <input
+                            value={distrito}
+                            onChange={(e) => setDistrito(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Barrio</label>
+                        <input
+                            value={barrio}
+                            onChange={(e) => setBarrio(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Otras señas</label>
+                        <input
+                            value={otras_sennas}
+                            onChange={(e) => setOtras_sennas(e.target.value)}
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+
+
+                    <button type="submit" className="btn btn-primary">Actualizar</button>
+                </form>
             </div>
         </div>
     )

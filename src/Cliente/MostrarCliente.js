@@ -6,14 +6,14 @@ import Sidebar from '../Components/Sidebar';
 import API from '../utils/httpClient';
 
 
-const URI = `${API}/Clientes/`
+const uri = `${API}/Clientes/`
 
 
 const MostrarCliente = () => {
 
     const [search, setSearch] = useState("")
 
-    const [Clientes, setCliente] = useState([])
+    const [clientes, setCliente] = useState([])
     useEffect(() => {
         getClientes()
     }, [])
@@ -21,13 +21,13 @@ const MostrarCliente = () => {
 
     //procedimineto para mostrar todos los Agentes
     const getClientes = async () => {
-        const res = await axios.get(URI)
+        const res = await axios.get(uri)
         setCliente(res.data)
     }
 
     //procedimineto para eliminar un Agente
-    const deleteCliente = async (ID_CLIENTE) => {
-        await axios.delete(`${URI}${ID_CLIENTE}`)
+    const deleteCliente = async (id_cliente) => {
+        await axios.delete(`${uri}${id_cliente}`)
         getClientes()
     }
 
@@ -39,10 +39,10 @@ const MostrarCliente = () => {
 
     let resultado = []
     if (!search) {
-        resultado = Clientes
+        resultado = clientes
     } else {
-        resultado = Clientes.filter((dato) =>
-            dato.NOMBRE.toLowerCase().includes(search.toLocaleLowerCase()));
+        resultado = clientes.filter((dato) =>
+            dato.nombre.toLowerCase().includes(search.toLocaleLowerCase()));
     }
 
 
@@ -51,51 +51,51 @@ const MostrarCliente = () => {
             {/* Coloca el Sidebar a la izquierda */}
             <Sidebar />
 
-        <div className='container-fluid'>
+            <div className='container-fluid'>
 
-            <label>Buscar por nombre: </label>
-            <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
-            <div className='row'>
-                <div className='col'>
-                    <Link to="/Clientes/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
-                    <table className='table'>
-                        <thead className='table-primary'>
-                            <tr>
+                <label>Buscar por nombre: </label>
+                <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
+                <div className='row'>
+                    <div className='col'>
+                        <Link to="/Clientes/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
+                        <table className='table'>
+                            <thead className='table-primary'>
+                                <tr>
 
-                                <th>NOMBRE</th>
-                                <th>1er APELLIDO</th>
-                                <th>2do APELLIDO</th>
-                                <th>PROVINCIA</th>
-                                <th>TELÉFONO</th>
-                                <th>TELÉFONO 2</th>
-                                <th>TIPO DE CLIENTE</th>
-                                <th>TIPO DE CÉDULA</th>
-                                <th>CÉDULA</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {resultado.map((Cliente) => (
-                                <tr key={Cliente.ID_CLIENTE}>
-                                    <td> {Cliente.NOMBRE} </td>
-                                    <td> {Cliente.APELLIDO_PATERNO} </td>
-                                    <td> {Cliente.APELLIDO_MATERNO} </td>
-                                    <td> {Cliente.TAB_DIRECCIONES_CLIENTE.PROVINCIA} </td>
-                                    <td> {Cliente.TAB_TELEFONOS_CLIENTE.TELEFONO_1} </td>
-                                    <td> {Cliente.TAB_TELEFONOS_CLIENTE.TELEFONO_2} </td>
-                                    <td> {Cliente.TAB_TIPOS_CLIENTE.NOMBRE} </td>
-                                    <td> {Cliente.TAB_TIPOS_CEDULA.DESCRIPCION} </td>
-                                    <td> {Cliente.CEDULA} </td>
-                                    <td>
-
-                                        <Link to={`edit/${Cliente.ID_CLIENTE}`} className='btn btn-info'>Editar</Link>
-                                        <button onClick={() => deleteCliente(Cliente.ID_CLIENTE)} className='btn btn-danger'>Eliminar</button>
-                                    </td>
+                                    <th>NOMBRE</th>
+                                    <th>1er APELLIDO</th>
+                                    <th>2do APELLIDO</th>
+                                    <th>PROVINCIA</th>
+                                    <th>TELÉFONO</th>
+                                    <th>TELÉFONO 2</th>
+                                    <th>TIPO DE CLIENTE</th>
+                                    <th>TIPO DE CÉDULA</th>
+                                    <th>CÉDULA</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {resultado.map((cliente) => (
+                                    <tr key={cliente.id_cliente}>
+                                        <td> {cliente.nombre} </td>
+                                        <td> {cliente.apellido_paterno} </td>
+                                        <td> {cliente.apellido_materno} </td>
+                                        <td> {cliente.tab_direcciones_cliente.provincia} </td>
+                                        <td> {cliente.tab_telefonos_cliente.telefono_1} </td>
+                                        <td> {cliente.tab_telefonos_cliente.telefono_2} </td>
+                                        <td> {cliente.tab_tipos_cliente.nombre} </td>
+                                        <td> {cliente.tab_tipos_cedula.descripcion} </td>
+                                        <td> {cliente.cedula} </td>
+                                        <td>
+
+                                            <Link to={`edit/${cliente.id_cliente}`} className='btn btn-info'>Editar</Link>
+                                            <button onClick={() => deleteCliente(cliente.id_cliente)} className='btn btn-danger'>Eliminar</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
 
 
