@@ -84,7 +84,7 @@ function App() {
               <Route path='/Productos' element={<MostrarProducto />} />
               <Route path='/Compras' element={<MostrarCompras />} />
               <Route path='/Facturacion' element={<MostrarF />} />
-              <Route path='/Facturacion/edit/:ID_FACTURA' element={<EditarFactura />} />
+              <Route path='/Facturacion/edit/:id_factura' element={<EditarFactura />} />
               <Route path='/Compras/edit/:num_documento' element={<EditarCompra />} />
               {/*<Route path='/Cabys' element={<MostrarCabys />} />*/}
               {/*<Route path='/Productos/edit/:ID_PRODUCTO' element={<EditarProducto />} />*/}

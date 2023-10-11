@@ -13,11 +13,11 @@ const CrearFactura = () => {
     const [iva, setIVA] = useState(0);
     const [total, setTotal] = useState(0);
     const [factura, setFactura] = useState({
-        ID_COMPANIA: '',
-        ID_TIPO_FACTURA: '',
-        ID_CLIENTE: '',
-        FECHA: new Date().toISOString().slice(0, 10), // Establecer fecha actual
-        VENCIMIENTO: '',
+        id_compania: '',
+        id_tipo_factura: '',
+        id_cliente: '',
+        fecha: new Date().toISOString().slice(0, 10), // Establecer fecha actual
+        vencimiento: '',
     });
     const [producto, setProducto] = useState({
         codigo: '',
@@ -112,10 +112,10 @@ const CrearFactura = () => {
 
     const limpiarFactura = () => {
         setFactura({
-            ID_COMPANIA: '',
-            ID_TIPO_FACTURA: '',
-            ID_CLIENTE: '',
-            VENCIMIENTO: '',
+            id_compania: '',
+            id_tipo_factura: '',
+            id_cliente: '',
+            vencimiento: '',
         });
     };
 
@@ -131,11 +131,11 @@ const CrearFactura = () => {
                 if (productoData) {
                     setProducto((prevProducto) => ({
                         ...prevProducto,
-                        codigo: productoData.ID_PRODUCTO,
-                        descripcion: productoData.DESCRIPCION,
+                        codigo: productoData.id_producto,
+                        descripcion: productoData.descripcion,
                         cantidad: '',
-                        precio: productoData.PRECIO,
-                        descuento: productoData.DESCUENTO,
+                        precio: productoData.precio,
+                        descuento: productoData.descuento,
                         precioTotal: 0,
                     }));
                 } else {
@@ -193,17 +193,17 @@ const CrearFactura = () => {
             try {
                 // Crear la factura y los detalles en la API
                 const facturaData = {
-                    ID_COMPANIA: factura.ID_COMPANIA,
-                    ID_TIPO_FACTURA: factura.ID_TIPO_FACTURA,
-                    ID_CLIENTE: factura.ID_CLIENTE,
-                    FECHA: factura.FECHA,
-                    VENCIMIENTO: factura.VENCIMIENTO,
-                    TOTAL: total,
+                    id_compania: factura.id_compania,
+                    id_tipo_factura: factura.id_tipo_factura,
+                    id_cliente: factura.id_cliente,
+                    fecha: factura.fecha,
+                    vencimiento: factura.vencimiento,
+                    total: total,
                     detallesFactura: detalleVenta.map((detalle) => ({
-                        ID_PRODUCTO: detalle.codigo,
-                        CANTIDAD: detalle.cantidad,
-                        PRECIO: detalle.precio,
-                        DESCUENTO: detalle.descuento,
+                        id_producto: detalle.codigo,
+                        cantidad: detalle.cantidad,
+                        precio: detalle.precio,
+                        descuento: detalle.descuento,
                     })),
                 };
                 console.log(facturaData);
@@ -237,7 +237,7 @@ const CrearFactura = () => {
             if (!isNaN(ultimoID)) {
                 setFactura((prevFactura) => ({
                     ...prevFactura,
-                    ID_FACTURA: parseInt(ultimoID) + 1,
+                    id_factura: parseInt(ultimoID) + 1,
                 }));
             }
         } catch (error) {
@@ -271,14 +271,14 @@ const CrearFactura = () => {
                         <div className="col-md-2 ">
                             <label htmlFor="COMPAÑIA">Compañia:</label>
             <select
-                name="ID_COMPANIA"
-                value={factura.ID_COMPANIA}
+                name="id_compania"
+                value={factura.id_compania}
                 onChange={handleFacturaChange}
             >
                 <option value="">Seleccionar Compañía</option>
                 {companias.map((compania) => (
-                    <option key={compania.ID_COMPANIA} value={compania.ID_COMPANIA}>
-                        {compania.NOMBRE}
+                    <option key={compania.id_compania} value={compania.id_compania}>
+                        {compania.nombre}
                     </option>
                 ))}
                             </select>
@@ -287,15 +287,15 @@ const CrearFactura = () => {
                         <div className="col-md-2 " >
                             <label htmlFor="TIPO_FACTURA">Tipo Factura:</label>
             <select
-                name="ID_TIPO_FACTURA"
-                value={factura.ID_TIPO_FACTURA}
+                name="id_tipo_factura"
+                value={factura.id_tipo_factura}
                 onChange={handleFacturaChange}
             >
                 <option value="">  Tipo de Factura</option>
                 {tiposFactura.map((tipoFactura) => (
                     <option
-                        key={tipoFactura.ID_TIPO_FACTURA}
-                        value={tipoFactura.ID_TIPO_FACTURA}
+                        key={tipoFactura.id_tipo_factura}
+                        value={tipoFactura.id_tipo_factura}
                     >
                         {tipoFactura.nombre}
                     </option>
@@ -306,11 +306,11 @@ const CrearFactura = () => {
                         
                         <div className="col-md-2 ">
                             <label htmlFor="CLIENTE">Cliente:</label>
-            <select name="ID_CLIENTE" value={factura.ID_CLIENTE} onChange={handleFacturaChange}>
+                <select name="id_cliente" value={factura.id_cliente} onChange={handleFacturaChange}>
                 <option value="">Seleccionar Cliente</option>
                 {clientes.map((cliente) => (
-                    <option key={cliente.ID_CLIENTE} value={cliente.ID_CLIENTE}>
-                        {cliente.NOMBRE}
+                    <option key={cliente.id_cliente} value={cliente.id_cliente}>
+                        {cliente.nombre}
                     </option>
                 ))}
                             </select>
@@ -321,8 +321,8 @@ const CrearFactura = () => {
                             <label htmlFor="FECHA">Fecha:</label>
             <input
                 type="text"
-                name="FECHA"
-                value={factura.FECHA}
+                name="fecha"
+                value={factura.fecha}
                 onChange={handleFacturaChange}
                 placeholder="Fecha"
                 disabled
@@ -333,8 +333,8 @@ const CrearFactura = () => {
                             <label htmlFor="VENCIMIENTO">Vencimiento:</label>
             <input
                 type="date"
-                name="VENCIMIENTO"
-                value={factura.VENCIMIENTO}
+                name="vencimiento"
+             value={factura.vencimiento}
                 onChange={handleFacturaChange}
                 placeholder="Vencimiento"
                             />
@@ -344,8 +344,8 @@ const CrearFactura = () => {
                             <label htmlFor="ID_FACTURA">ID Factura:</label>
             <input
                 type="text"
-                name="ID_FACTURA"
-                value={factura.ID_FACTURA}
+                name="id_factura"
+                value={factura.id_factura}
                 readOnly
                         />
                         </div>

@@ -24,8 +24,8 @@ const MostrarF = () => {
     }
 
     //procedimineto para eliminar un Agente
-    const deleteFactura = async (ID_FACTURA) => {
-        await axios.delete(`${URI}${ID_FACTURA}`)
+    const deleteFactura = async (id_factura) => {
+        await axios.delete(`${URI}${id_factura}`)
         getFacturas()
     }
 
@@ -40,7 +40,7 @@ const MostrarF = () => {
         resultado = Facturas
     } else {
         resultado = Facturas.filter((dato) =>
-            dato.ID_FACTURA.toString().includes(search.toLowerCase())
+            dato.id_factura.toString().includes(search.toLowerCase())
         );
     }
 
@@ -72,19 +72,19 @@ const MostrarF = () => {
                         </thead>
                         <tbody>
                             {resultado.map((Factura) => (
-                                <tr key={Factura.ID_FACTURA}>
-                                    <td> {Factura.ID_FACTURA} </td>
-                                    <td> {Factura.TAB_COMPANIA.NOMBRE} </td>
-                                    <td> {Factura.TAB_TIPOS_FACTURA.nombre} </td>
-                                    <td> {Factura.TAB_CLIENTE.NOMBRE} </td>
-                                    <td> {Factura.FECHA} </td>
-                                    <td> {Factura.VENCIMIENTO} </td>
-                                    <td> {Factura.TOTAL} </td>
+                                <tr key={Factura.id_factura}>
+                                    <td> {Factura.id_factura} </td>
+                                    <td> {Factura.tab_compania.nombre} </td>
+                                    <td> {Factura.tab_tipos_factura.nombre} </td>
+                                    <td> {Factura.tab_cliente.nombre} </td>
+                                    <td> {Factura.fecha} </td>
+                                    <td> {Factura.vencimiento} </td>
+                                    <td> {Factura.total} </td>
 
                                     <td>
 
-                                        <Link to={`/Facturacion/edit/${Factura.ID_FACTURA}`} className='btn btn-info'>Editar</Link>
-                                        <button onClick={() => deleteFactura(Factura.ID_FACTURA)} className='btn btn-danger'>Eliminar</button>
+                                        <Link to={`/Facturacion/edit/${Factura.id_factura}`} className='btn btn-info'>Editar</Link>
+                                        <button onClick={() => deleteFactura(Factura.id_factura)} className='btn btn-danger'>Eliminar</button>
                                     </td>
                                 </tr>
                             ))}

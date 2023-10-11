@@ -5,7 +5,7 @@ import Sidebar from '../Components/Sidebar';
 import API from '../utils/httpClient';
 
 const EditarFactura = () => {
-    const { ID_FACTURA } = useParams();
+    const { id_factura } = useParams();
     const [factura, setFactura] = useState({});
     const [detalleFactura, setDetalleFactura] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
@@ -15,7 +15,7 @@ const EditarFactura = () => {
 
     const obtenerFactura = async () => {
         try {
-            const response = await axios.get(`${API}/Facturacion/${ID_FACTURA}`);
+            const response = await axios.get(`${API}/Facturacion/${id_factura}`);
             const facturaData = response.data;
 
             setFactura(facturaData);
@@ -32,7 +32,7 @@ const EditarFactura = () => {
 
     const obtenerDetalleFactura = async () => {
         try {
-            const response = await axios.get(`${API}/Facturacion/${ID_FACTURA}/detalle`);
+            const response = await axios.get(`${API}/Facturacion/${id_factura}/detalle`);
             const detalleFacturaData = response.data;
 
             setDetalleFactura(detalleFacturaData);
@@ -64,7 +64,7 @@ const EditarFactura = () => {
 
     const calcularSubtotal = () => {
         const subtotal = detalleFactura.reduce(
-            (total, detalle) => total + (detalle.SUBTOTAL - (detalle.SUBTOTAL * detalle.DESCUENTO / 100)),
+            (total, detalle) => total + (detalle.subtotal - (detalle.subtotal * detalle.descuento / 100)),
             0
         );
         return subtotal;
@@ -77,7 +77,7 @@ const EditarFactura = () => {
 
     const calcularTotalDescuentos = () => {
         const totalDescuentos = detalleFactura.reduce(
-            (total, detalle) => total + (detalle.CANTIDAD * parseFloat(detalle.SUBTOTAL) * (parseFloat(detalle.DESCUENTO) || 0) / 100),
+            (total, detalle) => total + (detalle.cantidad * parseFloat(detalle.subtotal) * (parseFloat(detalle.descuento) || 0) / 100),
             0
         );
         return totalDescuentos;
@@ -113,7 +113,7 @@ const EditarFactura = () => {
 
         try {
             // Actualizar la factura
-            await axios.put(`${API}/Facturacion/${ID_FACTURA}`, factura);
+            await axios.put(`${API}/Facturacion/${id_factura}`, factura);
 
             // Verificar que haya al menos un detalle agregado antes de enviarlo al backend
             if (detalleFactura.length === 0) {
@@ -124,17 +124,17 @@ const EditarFactura = () => {
 
             // Crear un arreglo de detalles de factura para enviar al servidor
             const detallesFacturaArray = detalleFactura.map((detalle) => ({
-                ID_DETALLE_FACTURA: detalle.ID_DETALLE_FACTURA,
-                ID_FACTURA: detalle.ID_FACTURA,
-                ID_PRODUCTO: detalle.ID_PRODUCTO,
-                CANTIDAD: detalle.CANTIDAD,
-                SUBTOTAL: detalle.SUBTOTAL,
-                DESCUENTO: detalle.DESCUENTO,
+                id_detalle_factura: detalle.id_detalle_factura,
+                id_factura: detalle.id_factura,
+                id_producto: detalle.id_producto,
+                cantidad: detalle.cantidad,
+                subtotal: detalle.subtotal,
+                descuento: detalle.descuento,
             }));
 
             // Actualizar el detalle de la factura
             await axios.put(
-                `${API}/Facturacion/${ID_FACTURA}/detalle`,
+                `${API}/Facturacion/${id_factura}/detalle`,
                 { detallesFactura: detallesFacturaArray }
             );
 
@@ -170,8 +170,8 @@ const EditarFactura = () => {
                 <label>Compañía:</label>
                 <input
                     type="text"
-                    name="ID_COMPANIA"
-                    value={factura.ID_COMPANIA || ''}
+                    name="id_compañia"
+                    value={factura.id_compañia || ''}
                     onChange={handleInputChange}
                             />
                             </div>
@@ -180,8 +180,8 @@ const EditarFactura = () => {
                 <label>Tipo de Factura:</label>
                 <input
                     type="text"
-                    name="ID_TIPO_FACTURA"
-                    value={factura.ID_TIPO_FACTURA || ''}
+                    name="id_tipo_factura"
+                    value={factura.id_tipo_factura || ''}
                     onChange={handleInputChange}
                                 />
                                 
@@ -192,8 +192,8 @@ const EditarFactura = () => {
                 <label>Cliente:</label>
                 <input
                     type="text"
-                    name="ID_CLIENTE"
-                    value={factura.ID_CLIENTE || ''}
+                    name="id_cliente"
+                     value={factura.id_cliente || ''}
                     onChange={handleInputChange}
                                 />
                             </div>
@@ -202,8 +202,8 @@ const EditarFactura = () => {
                 <label>Fecha:</label>
                 <input
                     type="text"
-                    name="FECHA"
-                    value={factura.FECHA || ''}
+                    name="fecha"
+                    value={factura.fecha || ''}
                     onChange={handleInputChange}
                                 />
                                 
@@ -214,8 +214,8 @@ const EditarFactura = () => {
                 <label>Vencimiento:</label>
                 <input
                     type="text"
-                    name="VENCIMIENTO"
-                    value={factura.VENCIMIENTO || ''}
+                    name="vencimiento"
+                    value={factura.vencimiento || ''}
                     onChange={handleInputChange}
                                 />
                                 
@@ -225,8 +225,8 @@ const EditarFactura = () => {
                 <label>Total:</label>
                 <input
                     type="text"
-                    name="TOTAL"
-                    value={factura.TOTAL || ''}
+                    name="total"
+                    value={factura.total || ''}
                             onChange={handleInputChange} style={{ marginLeft: '5px' }}
                                 />
                             </div>
@@ -239,29 +239,29 @@ const EditarFactura = () => {
                         <label>ID Producto:</label>
                         <input
                             type="text"
-                            name={`ID_PRODUCTO`}
-                            value={detalle.ID_PRODUCTO || ''}
+                            name={`id_producto`}
+                            value={detalle.id_producto || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <label>Cantidad:</label>
                         <input
                             type="text"
-                            name={`detalleFactura[${index}].CANTIDAD`}
-                            value={detalle.CANTIDAD || ''}
+                            name={`detalleFactura[${index}].cantidad`}
+                            value={detalle.cantidad || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <label>Subtotal:</label>
                         <input
                             type="text"
-                            name={`detalleFactura[${index}].SUBTOTAL`}
-                            value={detalle.SUBTOTAL || ''}
+                            name={`detalleFactura[${index}].subtotal`}
+                            value={detalle.subtotal || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <label>Descuento:</label>
                         <input
                             type="text"
-                            name={`detalleFactura[${index}].DESCUENTO`}
-                            value={detalle.DESCUENTO || ''}
+                            name={`detalleFactura[${index}].descuento`}
+                            value={detalle.descuento || ''}
                             onChange={(event) => handleDetalleChange(event, index)}
                         />
                         <button type="button" onClick={() => eliminarDetalle(index)}>Eliminar Detalle</button>
