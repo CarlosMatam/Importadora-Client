@@ -28,7 +28,7 @@ const EditarCompra = () => {
 
     const obtenerDetalleCompra = async () => {
         try {
-            const response = await axios.get(`${API}/Compras/${NUM_DOCUMENTO}/detalle`);
+            const response = await axios.get(`${API}/Compras/${num_documento}/detalle`);
             const detalleCompraData = response.data;
 
             setDetalleCompra(detalleCompraData);
