@@ -110,6 +110,8 @@ const EditarCliente = () => {
 
                 <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
                     <form onSubmit={update} style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }}>
+                        <div className="row">
+
                     <div className='col-md-3 mb-4'>
                         <label className='form-label'>Nombre</label>
                         <input
@@ -255,7 +257,7 @@ const EditarCliente = () => {
                         />
                     </div>
 
-
+                        </div>
                     <button type="submit" className="btn btn-primary">Actualizar</button>
                     </form>
                 </div>
