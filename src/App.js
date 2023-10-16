@@ -60,20 +60,20 @@ function App() {
 
               <Route path='/Cobros' element={<MostrarCobro />} />
               <Route path='/Cobros/create' element={<CrearCobro />} />
-              <Route path='/Cobros/edit/:ID_COBRO' element={<EditarCobro />} />
+              <Route path='/Cobros/edit/:id_cobro' element={<EditarCobro />} />
               <Route path='/Pagos' element={<MostrarPago />} />
-              <Route path='/Pagos/edit/:ID_PAGO' element={<EditarPago />} />
+              <Route path='/Pagos/edit/:id_pago' element={<EditarPago />} />
               <Route path='/Pagos/create' element={<CrearPago />} />
-              <Route path='/Pagos/edit/:ID_PAGO' element={<EditarPago />} />
+              <Route path='/Pagos/edit/:id_pago' element={<EditarPago />} />
               <Route path='/Proveedores' element={<MostrarProveedores />} />
               <Route path='/' element={<MostrarAG />} />
               <Route path='/create' element={<CrearAgente />} />
               <Route path='/Proveedores/create' element={<CrearProveedor />} />
               <Route path='/edit/:id_agente' element={<EditarAgente />} />
-              <Route path='/Proveedores/edit/:ID_PROVEEDOR' element={<EditarProveedor />} />
+              <Route path='/Proveedores/edit/:id_proveedor' element={<EditarProveedor />} />
               <Route path='/Transportes' element={<MostrarTransporte />} />
               <Route path='/Transportes/create' element={<CrearTransporte />} />
-              <Route path='/Transportes/edit/:ID_TRANSPORTE' element={<EditarTransporte />} />
+              <Route path='/Transportes/edit/:id_transporte' element={<EditarTransporte />} />
               <Route path='/Clientes' element={<MostrarCliente />} />
               <Route path='/Clientes/create' element={<CrearCliente />} />
               <Route path='/Clientes/edit/:id_cliente' element={<EditarCliente />} />
